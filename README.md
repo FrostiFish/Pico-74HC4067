@@ -1,25 +1,25 @@
 # Pico-74HC4067
  
 A library for the Raspberry Pi Pico C SDK to interface with the 74HC4067 16-channel multiplexer.
-To use, add this repository to existing Pico C SDK Project. Also add the folder to your projects CMakeLists.txt by adding include_directories() and add_subdirectory(). See example code and CMakeLists.txt below.
+To use, add this repository to existing Pico C SDK Project. Also add the folder to your projects CMakeLists.txt through add_subdirectory(). See example code and CMakeLists.txt below.
 
 Example code:
 ```c
 #include <stdio.h>
 #include "pico/stdlib.h"
 #include "hardware/gpio.h"
-#include "74HC4067.h"
+#include "74hc4067.h"
 
 #define MUX_ENABLE_PIN 0
 #define MUX_MASK 0b11110
 
-PinConfig_74HC4067 mux;
+PinConfig_74hc4067 mux;
 
 int main()
 {
     stdio_init_all();
 
-    mux = configure_74HC4067(MUX_MASK, MUX_ENABLE_PIN, 3);
+    mux = configure_74hc4067(MUX_MASK, MUX_ENABLE_PIN, 3);
 
     while (true) {
         for (uint8_t i=0; i<16; i++) {
@@ -75,7 +75,6 @@ project(Pico-74HC4067-Example C CXX ASM)
 pico_sdk_init()
 
 # Include directories and subdirectory
-include_directories(Pico-74HC4067)
 add_subdirectory(Pico-74HC4067)
 
 # Add executable. Default name is the project name, version 0.1
@@ -92,7 +91,7 @@ pico_enable_stdio_usb(Pico-74HC4067-Example 1)
 # Add the standard library to the build
 target_link_libraries(Pico-74HC4067-Example
         pico_stdlib
-        Pico-74HC4067)
+        pico_74hc4067)
 
 # Add the standard include files to the build
 target_include_directories(Pico-74HC4067-Example PRIVATE
