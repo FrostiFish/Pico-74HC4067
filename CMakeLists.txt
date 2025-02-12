@@ -1,10 +1,10 @@
-add_library(Pico-74HC4067 INTERFACE 74HC4067.c)
+add_library(pico_74hc4067 INTERFACE)
 
-target_sources(Pico-74HC4067 INTERFACE
-        ${CMAKE_CURRENT_LIST_DIR}/74HC4067.c
+target_sources(pico_74hc4067 INTERFACE
+        ${CMAKE_CURRENT_LIST_DIR}/74hc4067.c
 )
 
 # Add the used pico libraries to the library
-target_link_libraries(Pico-74HC4067 INTERFACE
+target_link_libraries(pico_74hc4067 INTERFACE
         pico_stdlib
         hardware_gpio)

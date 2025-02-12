@@ -3,10 +3,10 @@
 #include "pico/stdlib.h"
 #include "hardware/gpio.h"
 
-#include"74HC4067.h"
+#include"74hc4067.h"
 
-PinConfig_74HC4067 configure_74HC4067(uint32_t select_mask, uint enable_pin, uint signal_pin) {
-    PinConfig_74HC4067 pin_config;
+PinConfig_74hc4067 configure_74hc4067(uint32_t select_mask, uint enable_pin, uint signal_pin) {
+    PinConfig_74hc4067 pin_config;
     pin_config.SELECT_MASK = select_mask;
     pin_config.MASK_FIRST_PIN = ffs(select_mask) - 1;
     pin_config.ENABLE_PIN = enable_pin;
@@ -19,8 +19,8 @@ PinConfig_74HC4067 configure_74HC4067(uint32_t select_mask, uint enable_pin, uin
     return pin_config;
 }
 
-PinConfig_74HC4067 configure_74HC4067_no_enable(uint32_t select_mask, uint signal_pin) {
-    PinConfig_74HC4067 pin_config;
+PinConfig_74hc4067 configure_74hc4067_no_enable(uint32_t select_mask, uint signal_pin) {
+    PinConfig_74hc4067 pin_config;
     pin_config.SELECT_MASK = select_mask;
     pin_config.MASK_FIRST_PIN = ffs(select_mask) - 1;
     pin_config.SIGNAL_PIN = signal_pin;
@@ -31,7 +31,7 @@ PinConfig_74HC4067 configure_74HC4067_no_enable(uint32_t select_mask, uint signa
     return pin_config;
 }
 
-void mux_put_address(PinConfig_74HC4067 * pin_config, uint32_t address) {
+void mux_put_address(PinConfig_74hc4067 * pin_config, uint32_t address) {
     gpio_put_masked(pin_config->SELECT_MASK, address << pin_config->MASK_FIRST_PIN);
     pin_config->_ADDRESS = address;
 }
