@@ -31,7 +31,6 @@ PinConfig_74hc4067 configure_74hc4067_no_enable(uint32_t select_mask, uint signa
     return pin_config;
 }
 
-void mux_put_address(PinConfig_74hc4067 * pin_config, uint32_t address) {
-    gpio_put_masked(pin_config->SELECT_MASK, address << pin_config->MASK_FIRST_PIN);
-    pin_config->_ADDRESS = address;
+void mux_put_address(PinConfig_74hc4067 pin_config, uint32_t address) {
+    gpio_put_masked(pin_config.SELECT_MASK, address << pin_config.MASK_FIRST_PIN);
 }

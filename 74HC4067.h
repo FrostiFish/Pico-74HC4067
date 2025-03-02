@@ -1,6 +1,8 @@
 #ifndef _74hc4067_H
 #define _74hc4067_H
 
+#define put_address(PIN_MASK, ADRESS, MASK_FIRST_PIN) (gpio_put_masked(PIN_MASK, ADRESS << MASK_FIRST_PIN))
+
 /* Structs */
 typedef struct PinConfig_74hc4067
 {
@@ -8,7 +10,6 @@ typedef struct PinConfig_74hc4067
     uint MASK_FIRST_PIN; // first pin of mask, computed in configure_74HC4067()
     uint ENABLE_PIN; // pin mask of active low chip enable pin
     uint SIGNAL_PIN; // signal pin of the mux, connect to desired pin on MCU (e.g. adc, gpio)
-    uint8_t _ADDRESS;
 } PinConfig_74hc4067;
 
 /* Constructors */
@@ -19,6 +20,6 @@ PinConfig_74hc4067 configure_74hc4067(uint32_t select_mask, uint enable_pin, uin
 PinConfig_74hc4067 configure_74hc4067_no_enable(uint32_t select_mask, uint signal_pin);
 
 /* API */
-void mux_put_address(PinConfig_74hc4067 * pin_config, uint32_t address);
+void mux_put_address(PinConfig_74hc4067 pin_config, uint32_t address);
 
 #endif
